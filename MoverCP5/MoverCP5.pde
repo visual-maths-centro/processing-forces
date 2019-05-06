@@ -6,17 +6,11 @@ ControlP5 cp5;
 PVector gravity = new PVector(0, 0);
 PVector wind = new PVector(0, 0);
 
-Mover[] movers;
 
 void setup () {
   size(600, 600, P2D);
 
   setupControls();
-
-  movers = new Mover[20];
-  for (int i = 0; i < movers.length; i++) {
-    movers[i] = new Mover(random(width), random(height), random(1, 4));
-  }
 }
 
 void setupControls () {
@@ -41,14 +35,4 @@ void setupControls () {
 
 void draw () {
   background(255);
-
-  for (int i = 0; i < movers.length; i++) {
-    Mover mover = movers[i];
-    mover.applyForce(gravity);
-    mover.applyForce(wind);
-    mover.applyForce(mover.friction());
-
-    mover.update();
-    mover.render();
-  }
 }

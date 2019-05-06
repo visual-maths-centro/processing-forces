@@ -4,13 +4,11 @@ class Mover {
   PVector position;
   PVector velocity;
   PVector acceleration;
-  float mass;
 
-  Mover (float x, float y, float m) {
+  Mover (float x, float y) {
     position = new PVector(x, y);
     velocity = new PVector();
     acceleration = new PVector();
-    mass = m;
   }
 
   void update () {
@@ -24,7 +22,7 @@ class Mover {
   void render() {
     fill(0);
     noStroke();
-    ellipse(position.x, position.y, mass * 10, mass * 10);
+    ellipse(position.x, position.y, 10, 10);
   }
 
   void checkEdges () {
@@ -43,21 +41,5 @@ class Mover {
       position.y = 0;
       velocity.y *= -1;
     }
-  }
-  
-  void applyForce (PVector force) {
-    PVector f = force.copy();
-    f.div(mass);
-    acceleration.add(f);
-  }
-  
-  /* Calc forces */
-  
-  PVector friction () {
-    PVector friction = velocity.copy();
-    friction.normalize();
-    friction.mult(-0.1);
-    
-    return friction;
   }
 }
